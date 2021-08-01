@@ -1,5 +1,10 @@
 <?php
     include "koneksi.php";
+    
+    //proses pengambilan dan perhitungan master sepatu ke index
+    $data_barang = mysqli_query($koneksi, "SELECT * FROM sepatu ");
+    $jumlah_barang = mysqli_num_rows($data_barang);
+
 
     //mengambil data inputan
     $nama_sepatu = ucwords($_POST['nama_barang']);

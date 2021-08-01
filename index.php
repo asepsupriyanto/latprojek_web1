@@ -7,6 +7,10 @@ if( !isset($_SESSION["username"]) ) {
 }
     include "koneksi.php";
    
+    //mengambil dan menghitung master sepatu
+    $data_barang = mysqli_query($koneksi, "SELECT * FROM sepatu ");
+    $jumlah_barang = mysqli_num_rows($data_barang);
+
     // include "tampilkan_data.php";
     // include "edit_data.php";
     // include "proses_transaksi.php";
@@ -99,7 +103,7 @@ if( !isset($_SESSION["username"]) ) {
                     <!--/.nav-collapse -->
                 </div>
             </div>
-        </div>
+    </div>
         <div class="container-fluid">
             <div class="row-fluid">
                 <div class="span3" id="sidebar">
@@ -168,7 +172,9 @@ if( !isset($_SESSION["username"]) ) {
                                     </div>
                                 </div>
                                 <div class="span3">
-                                    <div class="chart" data-percent="53">53%</div>
+                                    <div class="chart" data-percent="<?php echo $jumlah_barang; ?>">
+                                        <b style="font-size: 25px;"><?php echo $jumlah_barang; ?></b>
+                                    </div>
                                     <div class="chart-bottom-heading"><span class="label label-info">Stok Sepatu</span>
 
                                     </div>

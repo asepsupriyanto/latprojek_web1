@@ -193,7 +193,7 @@ if( !isset($_SESSION["username"]) ) {
             </div>
                         <hr>
                         <footer>
-                            <p>&copy; Vincent Gabriel 2013</p>
+                            <p>&copy; Asep Supriyanto 2021</p>
                         </footer>
         </div>
         <!--/.fluid-container-->
