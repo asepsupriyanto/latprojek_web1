@@ -67,8 +67,8 @@ require 'koneksi.php';
 
       <form class="form-signin" action="" method="POST">
         <h2 class="form-signin-heading">Silakan log in</h2>
-        <input type="text" class="input-block-level" placeholder="Username" name="username" id="username">
-        <input type="password" class="input-block-level" placeholder="Password" name="password" id="password">
+        <input type="text" class="input-block-level" placeholder="Username" name="username" id="username" required>
+        <input type="password" class="input-block-level" placeholder="Password" name="password" id="password" required>
         <button class="btn btn-large btn-primary" type="submit" name="login">Log in</button>
       </form>
 

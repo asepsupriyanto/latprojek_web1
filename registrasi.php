@@ -40,9 +40,9 @@ if( isset($_SESSION["username"]) ){
 
       <form class="form-signin" action="" method="POST">
         <h2 class="form-signin-heading">Silakan registrasi</h2>
-        <input type="text" class="input-block-level" placeholder="Username" name="username" id="username">
-        <input type="password" class="input-block-level" placeholder="Password" name="password" id="password">
-        <input type="password" class="input-block-level" placeholder="Konfirmasi password" name="password2" id="password2">
+        <input type="text" class="input-block-level" placeholder="Username" name="username" id="username" required>
+        <input type="password" class="input-block-level" placeholder="Password" name="password" id="password" required>
+        <input type="password" class="input-block-level" placeholder="Konfirmasi password" name="password2" id="password2" required>
         <button class="btn btn-success btn-large" type="submit" name="register">Register!</button>
         
         <div class="text-left forget">
