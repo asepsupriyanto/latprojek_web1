@@ -1,8 +1,18 @@
+<?php
+session_start();
+
+if( !isset($_SESSION["username"]) ) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
     
     <head>
-        <title>Forms</title>
+        <title>Tambah Data</title>
         <!-- Bootstrap -->
         <link href="library/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="library/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
@@ -16,18 +26,18 @@
     </head>
     
     <body>
-        <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container-fluid">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
                      <span class="icon-bar"></span>
                      <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="#">Admin Panel</a>
+                    <a class="brand" href="#">Aplikasi Kasir Toko Asep Sport</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
                             <li class="dropdown">
-                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> Vincent Gabriel <i class="caret"></i>
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> <?php echo ucwords($_SESSION["username"]); ?> <i class="caret"></i>
 
                                 </a>
                                 <ul class="dropdown-menu">
@@ -36,89 +46,32 @@
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <a tabindex="-1" href="login.html">Logout</a>
+                                        <a tabindex="-1" href="logout.php">Logout</a>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
                         <ul class="nav">
+                            <li>
+                                <a href="index.php">Beranda</a>
+                            </li>
                             <li class="active">
-                                <a href="#">Dashboard</a>
+                                <a href="#">Input Data</a>
+                               
                             </li>
-                            <li class="dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Settings <b class="caret"></b>
-
-                                </a>
-                                <ul class="dropdown-menu" id="menu1">
-                                    <li>
-                                        <a href="#">Tools <i class="icon-arrow-right"></i>
-
-                                        </a>
-                                        <ul class="dropdown-menu sub-menu">
-                                            <li>
-                                                <a href="#">Reports</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Logs</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Errors</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">SEO Settings</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Other Link</a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="#">Other Link</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Other Link</a>
-                                    </li>
-                                </ul>
+                            <li>
+                                <a href="#">Edit Data</a>
+                                
                             </li>
-                            <li class="dropdown">
-                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Content <i class="caret"></i>
-
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a tabindex="-1" href="#">Blog</a>
-                                    </li>
-                                    <li>
-                                        <a tabindex="-1" href="#">News</a>
-                                    </li>
-                                    <li>
-                                        <a tabindex="-1" href="#">Custom Pages</a>
-                                    </li>
-                                    <li>
-                                        <a tabindex="-1" href="#">Calendar</a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a tabindex="-1" href="#">FAQ</a>
-                                    </li>
-                                </ul>
+                            <li>
+                                <a href="#">Hapus Data</a>
+                               
                             </li>
-                            <li class="dropdown">
-                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Users <i class="caret"></i>
-
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a tabindex="-1" href="#">User List</a>
-                                    </li>
-                                    <li>
-                                        <a tabindex="-1" href="#">Search</a>
-                                    </li>
-                                    <li>
-                                        <a tabindex="-1" href="#">Permissions</a>
-                                    </li>
-                                </ul>
+                            <li>
+                                <a href="">Transaksi</a>
+                            </li>
+                            <li>
+                                <a href="">Laporan</a>
                             </li>
                         </ul>
                     </div>
@@ -131,13 +84,13 @@
                 <div class="span3" id="sidebar">
                     <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
                         <li>
-                            <a href="index.php"icon-chevron-right"></i> Dashboard</a>
+                            <a href="index.php"icon-chevron-right"></i> Beranda</a>
                         </li>
                         <li class="active">
                             <a href="#"><i class="icon-chevron-right"></i>Input Data</a>
                         </li>
                         <li>
-                            <a href=""><i class="icon-chevron-right"></i> Edit Data (Charts)</a>
+                            <a href=""><i class="icon-chevron-right"></i> Edit Data</a>
                         </li>
                         <li>
                             <a href=""><i class="icon-chevron-right"></i> Hapus Data</a>
@@ -158,78 +111,75 @@
                             <!-- block -->
                             <div class="block">
                                 <div class="navbar navbar-inner block-header">
-                                    <div class="muted pull-left">Form Example</div>
+                                    <div class="muted pull-left">Form Tambah Master Sepatu</div>
                                 </div>
                                 <div class="block-content collapse in">
                                     <div class="span12">
-                                        <form class="form-horizontal">
+                                        <form class="form-horizontal" action="proses_simpan.php" method="POST">
                                         <fieldset>
-                                            <legend>Form Horizontal</legend>
                                             <div class="control-group">
-                                            <label class="control-label" for="focusedInput">Focused input</label>
+                                            <label class="control-label" for="nama_barang">Nama Sepatu </label>
                                             <div class="controls">
-                                                <input class="input-xlarge focused" id="focusedInput" type="text" value="This is focused...">
+                                                <input type="text" class="input-xlarge focused" id="nama_barang" value="" name="nama_barang" required>
                                             </div>
                                             </div>
+
                                             <div class="control-group">
-                                            <label class="control-label">Uneditable input</label>
+                                            <label class="control-label" for="ukuran">Ukuran</label>
                                             <div class="controls">
-                                                <span class="input-xlarge uneditable-input">Some value here</span>
+                                                <input type="text" class="input-xlarge focused" id="ukuran" value="" name="ukuran" required>
                                             </div>
                                             </div>
+
                                             <div class="control-group">
-                                            <label class="control-label" for="disabledInput">Disabled input</label>
+                                            <label class="control-label" for="harga">Harga </label>
                                             <div class="controls">
-                                                <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Disabled input here..." disabled="">
+                                                <input type="text" class="input-xlarge focused" id="harga" value="" name="harga" required>
                                             </div>
                                             </div>
+
                                             <div class="control-group">
-                                            <label class="control-label" for="optionsCheckbox2">Disabled checkbox</label>
+                                            <label class="control-label" for="jumlah">Jumlah </label>
                                             <div class="controls">
-                                                <label>
-                                                <input type="checkbox" id="optionsCheckbox2" value="option1" disabled="">
-                                                This is a disabled checkbox
-                                                </label>
+                                                <input type="text" class="input-xlarge focused" id="jumlah" value="" name="jumlah" required>
                                             </div>
                                             </div>
-                                            <div class="control-group warning">
-                                            <label class="control-label" for="inputError">Input with warning</label>
+
+                                            <div class="control-group">
+                                            <label class="control-label" for="merk">Merk </label>
                                             <div class="controls">
-                                                <input type="text" id="inputError">
-                                                <span class="help-inline">Something may have gone wrong</span>
-                                            </div>
-                                            </div>
-                                            <div class="control-group error">
-                                            <label class="control-label" for="inputError">Input with error</label>
-                                            <div class="controls">
-                                                <input type="text" id="inputError">
-                                                <span class="help-inline">Please correct the error</span>
-                                            </div>
-                                            </div>
-                                            <div class="control-group success">
-                                            <label class="control-label" for="inputError">Input with success</label>
-                                            <div class="controls">
-                                                <input type="text" id="inputError">
-                                                <span class="help-inline">Woohoo!</span>
-                                            </div>
-                                            </div>
-                                            <div class="control-group success">
-                                            <label class="control-label" for="selectError">Select with success</label>
-                                            <div class="controls">
-                                                <select id="selectError">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                                <select class="input-xlarge focused" id="merk" value="" name="merk" required>
+                                                <option value="">Pilih...</option>
+                                                    <option value="Ortus">Ortuseight</option>
+                                                    <option value="Specs">Specs</option>
+                                                    <option value="Mizuno">Mizuno</option>
+                                                    <option value="Nike">Nike</option>
+                                                    <option value="Adidas">Adidas</option>
                                                 </select>
-                                                <span class="help-inline">Woohoo!</span>
                                             </div>
                                             </div>
-                                            <div class="form-actions">
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
-                                            <button type="reset" class="btn">Cancel</button>
+                                            
+                                            <div class="control-group">
+                                            <label class="control-label" for="jenis">Jenis</label>
+                                            <div class="controls">
+                                                <select class="input-xlarge focused" name="jenis" id="jenis" value="<?php if($data_edit['jenis'] != "") 
+                                                echo $data_edit['jenis']; ?>" required>
+                                                    <option value="">Pilih...</option>
+                                                    <option value="Running">Running</option>
+                                                    <option value="Sepakbola">Sepakbola</option>
+                                                    <option value="Futsal">Futsal</option>
+                                                    <option value="Voli">Voli</option>
+                                                    <option value="Basket">Basket</option>
+
+                                                </select>
                                             </div>
+                                        </div>
+
+                                        <div class="form-actions">
+                                          <button type="submit" class="btn btn-primary">Kirim Data</button>
+                                          <button type="reset" class="btn btn-danger">Cancel</button>
+                                        </div>
+                                            
                                         </fieldset>
                                         </form>
 
