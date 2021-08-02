@@ -118,16 +118,16 @@ if( !isset($_SESSION["username"]) ) {
                             <a href="master_data.php"><i class="icon-chevron-right"></i> Master Data</a>
                         </li>
                         <li>
-                            <a href="stats.html"><i class="icon-chevron-right"></i>Edit Data</a>
+                            <a href="edit_data.php"><i class="icon-chevron-right"></i>Edit Data</a>
                         </li>
                         <li>
-                            <a href="form.html"><i class="icon-chevron-right"></i> Hapus Data </a>
+                            <a href="hapus_data.php"><i class="icon-chevron-right"></i> Hapus Data </a>
                         </li>
                         <li>
-                            <a href="tables.html"><i class="icon-chevron-right"></i> Transaksi</a>
+                            <a href="transaksi.php"><i class="icon-chevron-right"></i> Transaksi</a>
                         </li>
                         <li>
-                            <a href="buttons.html"><i class="icon-chevron-right"></i> Laporan </a>
+                            <a href="laporan.php"><i class="icon-chevron-right"></i> Laporan </a>
                         </li>
                         
                     </ul>

@@ -6,6 +6,10 @@ if( !isset($_SESSION["username"]) ) {
     exit;
 }
     include "master_data_proses.php";
+    include "edit_data_proses.php";
+
+    //proses mengambil data untuk di edit
+    $data_edit = mysqli_fetch_assoc($proses_ambil);
 ?>
 
 
@@ -90,10 +94,10 @@ if( !isset($_SESSION["username"]) ) {
                         <li>
                             <a href="input_data.php"><i class="icon-chevron-right"></i>Input Data</a>
                         </li>
-                        <li class="active">
-                            <a href="#"><i class="icon-chevron-right"></i> Master Data</a>
-                        </li>
                         <li>
+                            <a href="master_data.php"><i class="icon-chevron-right"></i> Master Data</a>
+                        </li>
+                        <li class="active">
                             <a href="edit_data.php"><i class="icon-chevron-right"></i> Edit Data</a>
                         </li>
                         <li>
@@ -110,11 +114,120 @@ if( !isset($_SESSION["username"]) ) {
                     </div>
 
                 <div class="span9" id="content">
+                <div class="row-fluid">
+                            <!-- block -->
+                            <div class="block">
+                                <div class="navbar navbar-inner block-header">
+                                    <div class="muted pull-left">Form Tambah Master Sepatu</div>
+                                </div>
+                                <div class="block-content collapse in">
+                                    <div class="span12">
+                                        <?php 
+                                            if($_GET['id'] !=""){
+                                                //proses edit data
+                                            
+                                        ?>
+                                        <form class="form-horizontal" action="edit_data.php?id=<?php echo $data_edit['id'] ?>&proses=1" method="POST">
+                                        <?php 
+                                        }else{
+                                        ?>
+                                        
+                                        <form class="form-horizontal" action="proses_simpan.php" method="POST">
+                                            <?php
+                                        }
+                                        ?>
+                                        <fieldset>
+                                            <div class="control-group">
+                                            <label class="control-label" for="nama_barang">Nama Sepatu </label>
+                                            <div class="controls">
+                                                <input type="hidden" class="input-xlarge focused" id="nama_barang"name="nama_barang"
+                                                value="<?php if($data_edit['id'] !="")
+                                                echo $data_edit['id']; ?>">
+
+                                                <input type="text" class="input-xlarge focused" id="nama_barang" name="nama_barang"
+                                                value="<?php if($data_edit['nama_sepatu'] !="") echo $data_edit['nama_sepatu']; ?>" required>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="control-group">
+                                                <label class="control-label" for="ukuran">Ukuran</label>
+                                                    <div class="controls">
+                                                        <input type="text" class="input-xlarge focused" id="ukuran" value="<?php if($data_edit['ukuran'] !="")
+                                                        echo $data_edit['ukuran']; ?>" name="ukuran" required>
+                                                    </div>
+                                            </div>
+
+                                            <div class="control-group">
+                                                <label class="control-label" for="harga">Harga </label>
+                                                    <div class="controls">
+                                                        <input type="text" class="input-xlarge focused" id="harga" value="<?php if($data_edit['harga'] !="")
+                                                        echo $data_edit['harga']; ?>" name="harga" required>
+                                                    </div>
+                                            </div>
+
+                                            <div class="control-group">
+                                                <label class="control-label" for="jumlah">Jumlah </label>
+                                                    <div class="controls">
+                                                        <input type="text" class="input-xlarge focused" id="jumlah" value="<?php if($data_edit['jumlah'] !="")
+                                                        echo $data_edit['jumlah']; ?>" name="jumlah" required>
+                                                    </div>
+                                            </div>
+
+                                            <div class="control-group">
+                                                <label class="control-label" for="merk">Merk </label>
+                                                    <div class="controls">
+                                                        <select class="input-xlarge focused" id="merk" value="<?php if($data_edit['merk'] !="")
+                                                            echo $data_edit['merk']; ?>" name="merk" required>
+                                                            <option value="">Pilih...</option>
+                                                            <option value="Ortus">Ortuseight</option>
+                                                            <option value="Specs">Specs</option>
+                                                            <option value="Mizuno">Mizuno</option>
+                                                            <option value="Nike">Nike</option>
+                                                            <option value="Adidas">Adidas</option>
+                                                        </select>
+                                                    </div>
+                                            </div>
+                                            
+                                            <div class="control-group">
+                                                <label class="control-label" for="jenis">Jenis</label>
+                                                    <div class="controls">
+                                                        <select class="input-xlarge focused" name="jenis" id="jenis" value="<?php if($data_edit['jenis'] != "") 
+                                                        echo $data_edit['jenis']; ?>" required>
+                                                            <option value="">Pilih...</option>
+                                                            <option value="Running">Running</option>
+                                                            <option value="Sepakbola">Sepakbola</option>
+                                                            <option value="Futsal">Futsal</option>
+                                                            <option value="Voli">Voli</option>
+                                                            <option value="Basket">Basket</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-actions">
+                                          <button type="submit" class="btn btn-primary">Kirim Data</button>
+                                          <button type="reset" class="btn btn-danger">Cancel</button>
+                                        </div>
+                                    
+                                        </fieldset>
+                                        </form>
+                            </form>
+                                        
+                                      
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /block -->
+                        </div>
+
+
+
                     <div class="row-fluid">
                         <!-- block -->
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Striped Table</div>
+                                <div class="muted pull-left">Tabel Master Sepatu</div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
@@ -128,6 +241,7 @@ if( !isset($_SESSION["username"]) ) {
                                         <th>Ukuran</th>
                                         <th>Merk</th>
                                         <th>Jenis</th>
+                                        <th>Aksi</th>
                                         
                                           </tr>
 						              </thead>
@@ -149,14 +263,14 @@ if( !isset($_SESSION["username"]) ) {
                                                 <td><?php echo $data['ukuran'] ?></td>
                                                 <td><?php echo $data['merk'] ?></td>
                                                 <td><?php echo $data['jenis'] ?></td>
-                                                <!-- <td>
-                                                    <a href="#">
+                                                <td>
+                                                    <a href="edit_data.php?id=<?php echo $data['id']; ?>">
                                                         <button class="btn btn-success">Edit</button>
                                                     </a>
-                                                    <a href="#">
+                                                    <!-- <a href="#">
                                                         <button class="btn btn-danger">Hapus</button>
-                                                    </a>
-                                                </td> -->
+                                                    </a> -->
+                                                </td>
                                             </tr>
                                             <?php 
                                             }
@@ -233,4 +347,4 @@ if( !isset($_SESSION["username"]) ) {
         </script>
     </body>
 
-</html>
+</html> 
