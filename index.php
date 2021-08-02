@@ -115,6 +115,9 @@ if( !isset($_SESSION["username"]) ) {
                             <a href="input_data.php"><i class="icon-chevron-right"></i> Input Data</a>
                         </li>
                         <li>
+                            <a href="master_data.php"><i class="icon-chevron-right"></i> Master Data</a>
+                        </li>
+                        <li>
                             <a href="stats.html"><i class="icon-chevron-right"></i>Edit Data</a>
                         </li>
                         <li>

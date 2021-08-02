@@ -5,6 +5,7 @@ if( !isset($_SESSION["username"]) ) {
     header("Location: login.php");
     exit;
 }
+    include "master_data_proses.php";
 ?>
 
 
@@ -86,11 +87,11 @@ if( !isset($_SESSION["username"]) ) {
                         <li>
                             <a href="index.php"icon-chevron-right"></i> Beranda</a>
                         </li>
-                        <li class="active">
-                            <a href="#"><i class="icon-chevron-right"></i>Input Data</a>
-                        </li>
                         <li>
-                            <a href="master_data.php"><i class="icon-chevron-right"></i> Master Data</a>
+                            <a href="input_data.php"><i class="icon-chevron-right"></i>Input Data</a>
+                        </li>
+                        <li class="active">
+                            <a href="#"><i class="icon-chevron-right"></i> Master Data</a>
                         </li>
                         <li>
                             <a href=""><i class="icon-chevron-right"></i> Edit Data</a>
@@ -106,93 +107,52 @@ if( !isset($_SESSION["username"]) ) {
                         </li>
                        
                     </ul>
-                </div>
-                <!--/span-->
-                    <div class="span9" id="content">
-                        <!-- morris stacked chart -->
-                        <div class="row-fluid">
-                            <!-- block -->
-                            <div class="block">
-                                <div class="navbar navbar-inner block-header">
-                                    <div class="muted pull-left">Form Tambah Master Sepatu</div>
-                                </div>
-                                <div class="block-content collapse in">
-                                    <div class="span12">
-                                        <form class="form-horizontal" action="proses_simpan.php" method="POST">
-                                        <fieldset>
-                                            <div class="control-group">
-                                            <label class="control-label" for="nama_barang">Nama Sepatu </label>
-                                            <div class="controls">
-                                                <input type="text" class="input-xlarge focused" id="nama_barang" value="" name="nama_barang" required>
-                                            </div>
-                                            </div>
+                    </div>
 
-                                            <div class="control-group">
-                                            <label class="control-label" for="ukuran">Ukuran</label>
-                                            <div class="controls">
-                                                <input type="text" class="input-xlarge focused" id="ukuran" value="" name="ukuran" required>
-                                            </div>
-                                            </div>
+                <div class="span9" id="content">
+                    <div class="row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">Striped Table</div>
+                            </div>
+                            <div class="block-content collapse in">
+                                <div class="span12">
+  									<table class="table table-striped">
+						              <thead>
+                                          <tr>
+						                <th>ID Barang</th>
+                                        <th>Nama Sepatu</th>
+                                        <th>Subtotal</th>
+                                        <th>Transaksi</th>
+                                          </tr>
+						              </thead>
+						              <tbody>
+						                <?php
+                                            $subtotal = 0;
 
-                                            <div class="control-group">
-                                            <label class="control-label" for="harga">Harga </label>
-                                            <div class="controls">
-                                                <input type="text" class="input-xlarge focused" id="harga" value="" name="harga" required>
-                                            </div>
-                                            </div>
+                                            //menampilkan data
+                                            while($data = mysqli_fetch_assoc($proses)){
 
-                                            <div class="control-group">
-                                            <label class="control-label" for="jumlah">Jumlah </label>
-                                            <div class="controls">
-                                                <input type="text" class="input-xlarge focused" id="jumlah" value="" name="jumlah" required>
-                                            </div>
-                                            </div>
-
-                                            <div class="control-group">
-                                            <label class="control-label" for="merk">Merk </label>
-                                            <div class="controls">
-                                                <select class="input-xlarge focused" id="merk" value="" name="merk" required>
-                                                <option value="">Pilih...</option>
-                                                    <option value="Ortus">Ortuseight</option>
-                                                    <option value="Specs">Specs</option>
-                                                    <option value="Mizuno">Mizuno</option>
-                                                    <option value="Nike">Nike</option>
-                                                    <option value="Adidas">Adidas</option>
-                                                </select>
-                                            </div>
-                                            </div>
-                                            
-                                            <div class="control-group">
-                                            <label class="control-label" for="jenis">Jenis</label>
-                                            <div class="controls">
-                                                <select class="input-xlarge focused" name="jenis" id="jenis" value="<?php if($data_edit['jenis'] != "") 
-                                                echo $data_edit['jenis']; ?>" required>
-                                                    <option value="">Pilih...</option>
-                                                    <option value="Running">Running</option>
-                                                    <option value="Sepakbola">Sepakbola</option>
-                                                    <option value="Futsal">Futsal</option>
-                                                    <option value="Voli">Voli</option>
-                                                    <option value="Basket">Basket</option>
-
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-actions">
-                                          <button type="submit" class="btn btn-primary">Kirim Data</button>
-                                          <button type="reset" class="btn btn-danger">Cancel</button>
-                                        </div>
-                                            
-                                        </fieldset>
-                                        </form>
-
-                                    </div>
+                                                //perhitungan subtotal
+                                                $subtotal = $data['harga']*$data['jumlah'];
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $data['id'] ?></td>
+                                                <td><?php echo $data['nama_sepatu'] ?></td>
+                                                <td>Rp. <?php echo $subtotal ?></td>
+                                            </tr>
+                                            <?php 
+                                            }
+                                            ?>
+						              </tbody>
+						            </table>
                                 </div>
                             </div>
-                            <!-- /block -->
                         </div>
+                        <!-- /block -->
                     </div>
-                    
+                </div>
             </div>
                         <hr>
                         <footer>
