@@ -90,13 +90,13 @@ if( !isset($_SESSION["username"]) ) {
                         <li>
                             <a href="input_data.php"><i class="icon-chevron-right"></i>Input Data</a>
                         </li>
-                        <li class="active">
+                        <li>
                             <a href="#"><i class="icon-chevron-right"></i> Master Data</a>
                         </li>
                         <li>
                             <a href="edit_data.php"><i class="icon-chevron-right"></i> Edit Data</a>
                         </li>
-                        <li>
+                        <li  class="active">
                             <a href="hapus_data.php"><i class="icon-chevron-right"></i> Hapus Data</a>
                         </li>
                         <li>
@@ -118,10 +118,9 @@ if( !isset($_SESSION["username"]) ) {
 	                                    <i class="icon-chevron-left hide-sidebar"><a href='#' title="Hide Sidebar" rel='tooltip'>&nbsp;</a></i>
 	                                    <i class="icon-chevron-right show-sidebar" style="display:none;"><a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
 	                                    <li>
-	                                        <a href="#">Master Data</a> <span class="divider">/</span>	
+	                                        <a href="#">Hapus Data</a> <span class="divider"></span>	
 	                                    </li>
-	                                    <li>
-	                                        <a href="#">Tabel Master Sepatu</a> <span class="divider"></span>	
+	                                   
 	                                    
 	                                </ul>
                             	</div>
@@ -144,6 +143,7 @@ if( !isset($_SESSION["username"]) ) {
                                         <th>Ukuran</th>
                                         <th>Merk</th>
                                         <th>Jenis</th>
+                                        <th>Aksi</th>
                                         
                                           </tr>
 						              </thead>
@@ -165,14 +165,14 @@ if( !isset($_SESSION["username"]) ) {
                                                 <td><?php echo $data['ukuran'] ?></td>
                                                 <td><?php echo $data['merk'] ?></td>
                                                 <td><?php echo $data['jenis'] ?></td>
-                                                <!-- <td>
-                                                    <a href="#">
+                                                <td>
+                                                    <!-- <a href="#">
                                                         <button class="btn btn-success">Edit</button>
-                                                    </a>
-                                                    <a href="#">
+                                                    </a> -->
+                                                    <a href="hapus_data_proses.php?id=<?php echo $data['id']; ?>">
                                                         <button class="btn btn-danger">Hapus</button>
                                                     </a>
-                                                </td> -->
+                                                </td>
                                             </tr>
                                             <?php 
                                             }

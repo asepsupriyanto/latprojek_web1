@@ -76,7 +76,7 @@ if( !isset($_SESSION["username"]) ) {
                                 </ul>
                             </li>
                         </ul>
-                        <ul class="nav">
+                        <!-- <ul class="nav">
                             <li class="active">
                                 <a href="index.php">Beranda</a>
                             </li>
@@ -98,7 +98,7 @@ if( !isset($_SESSION["username"]) ) {
                             <li>
                                 <a href="">Laporan</a>
                             </li>
-                        </ul>
+                        </ul> -->
                     </div>
                     <!--/.nav-collapse -->
                 </div>
@@ -150,9 +150,8 @@ if( !isset($_SESSION["username"]) ) {
 	                                        <a href="#">Beranda</a> <span class="divider">/</span>	
 	                                    </li>
 	                                    <li>
-	                                        <a href="#">Transaksi</a> <span class="divider">/</span>	
-	                                    </li>
-	                                    <li class="active">Master Sepatu</li>
+	                                        <a href="#">Statistik</a> <span class="divider"></span>	
+	                                    
 	                                </ul>
                             	</div>
                         	</div>
