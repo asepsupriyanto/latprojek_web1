@@ -85,19 +85,19 @@ if( !isset($_SESSION["username"]) ) {
                 <div class="span3" id="sidebar">
                     <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
                         <li>
-                            <a href="index.php"icon-chevron-right"></i> Beranda</a>
+                            <a href="index.php"><i class="icon-home"></i> Beranda</a>
                         </li>
                         <li>
-                            <a href="input_data.php"><i class="icon-chevron-right"></i>Input Data</a>
+                            <a href="input_data.php"><i class="icon-upload"></i> Input Data</a>
                         </li>
                         <li>
-                            <a href="#"><i class="icon-chevron-right"></i> Master Data</a>
+                            <a href="master_data.php"><i class="icon-th-list"></i> Master Data</a>
                         </li>
                         <li>
-                            <a href="edit_data.php"><i class="icon-chevron-right"></i> Edit Data</a>
+                            <a href="edit_data.php"><i class="icon-edit"></i> Edit Data</a>
                         </li>
                         <li  class="active">
-                            <a href="hapus_data.php"><i class="icon-chevron-right"></i> Hapus Data</a>
+                            <a href="hapus_data.php"><i class="icon-remove-sign"></i> Hapus Data</a>
                         </li>
                         <li>
                             <a href="transaksi.php"><i class="icon-chevron-right"></i> Transaksi</a>
@@ -126,10 +126,19 @@ if( !isset($_SESSION["username"]) ) {
                             	</div>
                         	</div>
                     	</div>
+
+                        <?php
+                            if(mysqli_num_rows($proses) == 0){ 
+                                echo '<div class="alert alert-error alert-block">
+                                        <a class="close" data-dismiss="alert" href="#">&times;</a>
+                                        <h4 class="alert-heading">Data Ini Tidak Ada</h4>
+                                    </div>';
+                                }else{
+                         ?>
                         <!-- block -->
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Striped Table</div>
+                                <div class="muted pull-left">Hapus Data Sepatu</div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
@@ -177,6 +186,9 @@ if( !isset($_SESSION["username"]) ) {
                                             <?php 
                                             }
                                             ?>
+                    <?php
+                                }
+                     ?>
 						              </tbody>
 						            </table>
                                 </div>

@@ -84,19 +84,19 @@ if( !isset($_SESSION["username"]) ) {
                 <div class="span3" id="sidebar">
                     <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
                         <li>
-                            <a href="index.php"icon-chevron-right"></i> Beranda</a>
+                            <a href="index.php"><i class="icon-home"></i> Beranda</a>
                         </li>
                         <li class="active">
-                            <a href="#"><i class="icon-chevron-right"></i>Input Data</a>
+                            <a href="#"><i class="icon-upload"></i>Input Data</a>
                         </li>
                         <li>
-                            <a href="master_data.php"><i class="icon-chevron-right"></i> Master Data</a>
+                            <a href="master_data.php"><i class="icon-th-list"></i> Master Data</a>
                         </li>
                         <li>
-                            <a href="edit_data.php"><i class="icon-chevron-right"></i> Edit Data</a>
+                            <a href="edit_data.php"><i class="icon-edit"></i> Edit Data</a>
                         </li>
                         <li>
-                            <a href="hapus_data.php"><i class="icon-chevron-right"></i> Hapus Data</a>
+                            <a href="hapus_data.php"><i class="icon-remove-sign"></i> Hapus Data</a>
                         </li>
                         <li>
                             <a href="transaksi.php"><i class="icon-chevron-right"></i> Transaksi</a>
