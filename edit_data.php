@@ -17,7 +17,7 @@ if( !isset($_SESSION["username"]) ) {
 <html>
     
     <head>
-        <title>Tambah Data</title>
+        <title>Edit Data</title>
         <!-- Bootstrap -->
         <link href="library/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="library/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
@@ -104,11 +104,11 @@ if( !isset($_SESSION["username"]) ) {
                             <a href="hapus_data.php"><i class="icon-remove-sign"></i> Hapus Data</a>
                         </li>
                         <li>
-                            <a href="transaksi.php"><i class="icon-chevron-right"></i> Transaksi</a>
+                            <a href="transaksi.php"><i class="icon-briefcase"></i> Transaksi</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="laporan.php"><i class="icon-chevron-right"></i> Laporan</a>
-                        </li>
+                        </li> -->
                        
                     </ul>
                     </div>

@@ -11,6 +11,10 @@ if( !isset($_SESSION["username"]) ) {
     $data_barang = mysqli_query($koneksi, "SELECT * FROM sepatu ");
     $jumlah_barang = mysqli_num_rows($data_barang);
 
+    //mengambil dan menghitubf master transaksi
+    $data_transaksi = mysqli_query($koneksi, "SELECT * FROM transaksi");
+    $jumlah_transaksi = mysqli_num_rows($data_transaksi);
+
     // include "tampilkan_data.php";
     // include "edit_data.php";
     // include "proses_transaksi.php";
@@ -124,11 +128,11 @@ if( !isset($_SESSION["username"]) ) {
                             <a href="hapus_data.php"><i class="icon-remove-sign"></i> Hapus Data </a>
                         </li>
                         <li>
-                            <a href="transaksi.php"><i class="icon-chevron-right"></i> Transaksi</a>
+                            <a href="transaksi.php"><i class="icon-briefcase"></i> Transaksi</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="laporan.php"><i class="icon-chevron-right"></i> Laporan </a>
-                        </li>
+                        </li> -->
                         
                     </ul>
                 </div>
@@ -168,8 +172,10 @@ if( !isset($_SESSION["username"]) ) {
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span3">
-                                    <div class="chart" data-percent="73">73%</div>
-                                    <div class="chart-bottom-heading"><span class="label label-info">Penjualan</span>
+                                    <div class="chart" data-percent="<?php echo $jumlah_transaksi; ?>">
+                                    <b style="font-size: 25px;"><?php echo $jumlah_transaksi; ?></b>
+                                    </div>
+                                    <div class="chart-bottom-heading"><span class="label label-info">Transaksi</span>
 
                                     </div>
                                 </div>

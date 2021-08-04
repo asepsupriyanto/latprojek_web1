@@ -1,19 +1,25 @@
 <?php
+error_reporting(0);
 session_start();
 
 if( !isset($_SESSION["username"]) ) {
     header("Location: login.php");
     exit;
 }
-    include "master_data_proses.php";
+    include "koneksi.php";
+    include "transaksi_proses.php";
+
+    $proses = mysqli_query($koneksi, "SELECT * FROM transaksi")
+            or die (mysqli_error($koneksi));
 ?>
+
 
 
 <!DOCTYPE html>
 <html>
     
     <head>
-        <title>Hapus Data</title>
+        <title>Master Data</title>
         <!-- Bootstrap -->
         <link href="library/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="library/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
@@ -96,10 +102,10 @@ if( !isset($_SESSION["username"]) ) {
                         <li>
                             <a href="edit_data.php"><i class="icon-edit"></i> Edit Data</a>
                         </li>
-                        <li  class="active">
+                        <li>
                             <a href="hapus_data.php"><i class="icon-remove-sign"></i> Hapus Data</a>
                         </li>
-                        <li>
+                        <li  class="active">
                             <a href="transaksi.php"><i class="icon-briefcase"></i> Transaksi</a>
                         </li>
                         <!-- <li>
@@ -118,27 +124,26 @@ if( !isset($_SESSION["username"]) ) {
 	                                    <i class="icon-chevron-left hide-sidebar"><a href='#' title="Hide Sidebar" rel='tooltip'>&nbsp;</a></i>
 	                                    <i class="icon-chevron-right show-sidebar" style="display:none;"><a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
 	                                    <li>
-	                                        <a href="#">Hapus Data</a> <span class="divider"></span>	
+	                                        <a href="#">Data Transaki </a> <span class="divider"></span>	
 	                                    </li>
-	                                   
+	                                    
 	                                    
 	                                </ul>
                             	</div>
                         	</div>
                     	</div>
-
-                        <?php
+                        <!-- block -->
+                         <?php
                             if(mysqli_num_rows($proses) == 0){ 
                                 echo '<div class="alert alert-error alert-block">
                                         <a class="close" data-dismiss="alert" href="#">&times;</a>
-                                        <h4 class="alert-heading">Data Ini Tidak Ada</h4>
+                                        <h4 class="alert-heading">Data Transaksi Tidak Ada!</h4>
                                     </div>';
                                 }else{
                          ?>
-                        <!-- block -->
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Hapus Data Sepatu</div>
+                                <div class="muted pull-left">Transaki</div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
@@ -165,6 +170,8 @@ if( !isset($_SESSION["username"]) ) {
 
                                                 //perhitungan subtotal
                                                 $subtotal = $data['harga']*$data['jumlah'];
+
+                                                $total_bayar += $subtotal;
                                             ?>
                                             <tr>
                                                 <td><?php echo $data['id'] ?></td>
@@ -178,7 +185,7 @@ if( !isset($_SESSION["username"]) ) {
                                                     <!-- <a href="#">
                                                         <button class="btn btn-success">Edit</button>
                                                     </a> -->
-                                                    <a href="hapus_data_proses.php?id=<?php echo $data['id']; ?>">
+                                                    <a href="transaksi_hapus.php?id=<?php echo $data['id']; ?>">
                                                         <button class="btn btn-danger">Hapus</button>
                                                     </a>
                                                 </td>
@@ -186,9 +193,15 @@ if( !isset($_SESSION["username"]) ) {
                                             <?php 
                                             }
                                             ?>
-                    <?php
-                                }
-                     ?>
+
+                                            <tr>
+                                                <td colspan="4"><b>Total Bayar</b></td>
+                                                <td><b><?php echo $total_bayar ?></b></td>
+                                            </tr>
+
+                                            <?php 
+  }
+  ?>
 						              </tbody>
 						            </table>
                                 </div>

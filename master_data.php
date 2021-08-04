@@ -6,6 +6,19 @@ if( !isset($_SESSION["username"]) ) {
     exit;
 }
     include "master_data_proses.php";
+    include "transaksi_proses.php";
+    include "koneksi.php";
+
+    //proses input data ke transaksi
+    if( isset($_POST["bayar"])){
+        if( pembayaran($_POST) > 0){
+            echo "<script>
+                    alert('Data transaksi berhasil ditambahkan!');
+                    </script>";
+        }else{
+            echo mysqli_error($koneksi);
+        }
+    }
 ?>
 
 
@@ -13,7 +26,7 @@ if( !isset($_SESSION["username"]) ) {
 <html>
     
     <head>
-        <title>Tambah Data</title>
+        <title>Master Data</title>
         <!-- Bootstrap -->
         <link href="library/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="library/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
@@ -100,11 +113,11 @@ if( !isset($_SESSION["username"]) ) {
                             <a href="hapus_data.php"><i class="icon-remove-sign"></i> Hapus Data</a>
                         </li>
                         <li>
-                            <a href="transaksi.php"><i class="icon-chevron-right"></i> Transaksi</a>
+                            <a href="transaksi.php"><i class="icon-briefcase"></i> Transaksi</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="laporan.php"><i class="icon-chevron-right"></i> Laporan</a>
-                        </li>
+                        </li> -->
                        
                     </ul>
                     </div>
@@ -149,9 +162,10 @@ if( !isset($_SESSION["username"]) ) {
                                         <th>Nama Sepatu</th>
                                         <th>Satuan</th>
                                         <th>Subtotal</th>
-                                        <th>Ukuran</th>
+                                        <!-- <th>Ukuran</th>
                                         <th>Merk</th>
-                                        <th>Jenis</th>
+                                        <th>Jenis</th> -->
+                                        <th>Aksi</th>
                                         
                                           </tr>
 						              </thead>
@@ -170,17 +184,37 @@ if( !isset($_SESSION["username"]) ) {
                                                 <td><?php echo $data['nama_sepatu'] ?></td>
                                                 <td><?php echo $data['jumlah'] ?></td>
                                                 <td>Rp <?php echo $subtotal ?></td>
-                                                <td><?php echo $data['ukuran'] ?></td>
+                                                <!-- <td><?php echo $data['ukuran'] ?></td>
                                                 <td><?php echo $data['merk'] ?></td>
-                                                <td><?php echo $data['jenis'] ?></td>
-                                                <!-- <td>
-                                                    <a href="#">
+                                                <td><?php echo $data['jenis'] ?></td> -->
+                                                <td>
+                                                    <!-- <a href="#">
                                                         <button class="btn btn-success">Edit</button>
-                                                    </a>
-                                                    <a href="#">
-                                                        <button class="btn btn-danger">Hapus</button>
-                                                    </a>
-                                                </td> -->
+                                                    </a> -->
+                                                    <form action="" method="POST">
+                                                        <button class="btn btn-primary" type="submit" name="bayar">Bayar</button>
+                                                            <input type="hidden" class="input-xlarge focused" id="nama_barang" value="<?php if($data['nama_sepatu'] != "") 
+                                                            echo $data['nama_sepatu']; ?>" name="nama_barang">   
+
+                                                            <input type="hidden" class="input-xlarge focused" id="ukuran" value="<?php if($data['ukuran'] != "") 
+                                                            echo $data['ukuran']; ?>" name="ukuran">  
+
+                                                            <input type="hidden" class="input-xlarge focused" id="harga" value="<?php if($data['harga'] != "") 
+                                                            echo $data['harga']; ?>" name="harga">  
+
+                                                            <input type="hidden" class="input-xlarge focused" id="jumlah" value="<?php if($data['jumlah'] != "") 
+                                                            echo $data['jumlah']; ?>" name="jumlah">  
+
+                                                            <input type="hidden" class="input-xlarge focused" id="merk" value="<?php if($data['merk'] != "") 
+                                                            echo $data['jenis']; ?>" name="merk"> 
+                                                                                    
+                                                            <input type="hidden" class="input-xlarge focused" id="jenis" value="<?php if($data['jenis'] != "") 
+                                                            echo $data['id']; ?>" name="jenis">  
+
+                                                            <input type="hidden" class="input-xlarge focused" id="sub_total" value="<?php if($subtotal != "") 
+                                                            echo $subtotal; ?>" name="sub_total" >    
+                                                    </form>
+                                                </td>
                                             </tr>
                                             <?php 
                                             }
