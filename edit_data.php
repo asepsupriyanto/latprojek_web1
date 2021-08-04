@@ -278,12 +278,13 @@ if( !isset($_SESSION["username"]) ) {
 
                                                 //perhitungan subtotal
                                                 $subtotal = $data['harga']*$data['jumlah'];
+                                                $rupiah=number_format($subtotal,2,',','.');
                                             ?>
                                             <tr>
                                                 <td><?php echo $data['id'] ?></td>
                                                 <td><?php echo $data['nama_sepatu'] ?></td>
                                                 <td><?php echo $data['jumlah'] ?></td>
-                                                <td>Rp <?php echo $subtotal ?></td>
+                                                <td><?php echo'Rp'.$rupiah ?></td>
                                                 <td><?php echo $data['ukuran'] ?></td>
                                                 <td><?php echo $data['merk'] ?></td>
                                                 <td><?php echo $data['jenis'] ?></td>

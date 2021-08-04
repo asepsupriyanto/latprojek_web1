@@ -171,20 +171,23 @@ if( !isset($_SESSION["username"]) ) {
                                                 //perhitungan subtotal
                                                 $subtotal = $data['harga']*$data['jumlah'];
 
+                                                $rupiah=number_format($subtotal,2,',','.');
+
                                                 $total_bayar += $subtotal;
+                                                $rupiah2 = number_format($total_bayar,2,',','.')
                                             ?>
                                             <tr>
                                                 <td><?php echo $data['id'] ?></td>
                                                 <td><?php echo $data['nama_sepatu'] ?></td>
                                                 <td><?php echo $data['jumlah'] ?></td>
-                                                <td>Rp <?php echo $subtotal ?></td>
+                                                <td><?php echo 'Rp'.$rupiah ?></td>
                                                 <!-- <td><?php echo $data['ukuran'] ?></td>
                                                 <td><?php echo $data['merk'] ?></td>
                                                 <td><?php echo $data['jenis'] ?></td> -->
                                                 <td>
-                                                    <!-- <a href="#">
-                                                        <button class="btn btn-success">Edit</button>
-                                                    </a> -->
+                                                    <a href="cetak.php">
+                                                        <button class="btn btn-info">Cetak</button>
+                                                    </a>
                                                     <a href="transaksi_hapus.php?id=<?php echo $data['id']; ?>">
                                                         <button class="btn btn-danger">Hapus</button>
                                                     </a>
@@ -196,7 +199,7 @@ if( !isset($_SESSION["username"]) ) {
 
                                             <tr>
                                                 <td colspan="4"><b>Total Bayar</b></td>
-                                                <td><b><?php echo $total_bayar ?></b></td>
+                                                <td><b><?php echo 'Rp'.$rupiah2 ?></b></td>
                                             </tr>
 
                                             <?php 
