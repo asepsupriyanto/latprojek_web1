@@ -131,7 +131,7 @@ if( !isset($_SESSION["username"]) ) {
                             if(mysqli_num_rows($proses) == 0){ 
                                 echo '<div class="alert alert-error alert-block">
                                         <a class="close" data-dismiss="alert" href="#">&times;</a>
-                                        <h4 class="alert-heading">Data Ini Tidak Ada</h4>
+                                        <h4 class="alert-heading">Data tidak ada!</h4>
                                     </div>';
                                 }else{
                          ?>

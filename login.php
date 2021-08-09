@@ -89,8 +89,8 @@ require 'koneksi.php';
 
       <form class="form-signin" action="" method="POST">
         <h2 class="form-signin-heading" align="center">Asep Sports</h2>
-        <input type="text" class="input-block-level" placeholder="Username" name="username" id="username" required>
-        <input type="password" class="input-block-level" placeholder="Password" name="password" id="password" required>
+        <input type="text" class="input-block-level" placeholder="Username" name="username" id="username" required autocomplete="off">
+        <input type="password" class="input-block-level" placeholder="Password" name="password" id="password" required autocomplete="off">
 
         <div class="form-group inline-block">
           <div class="custom-control custom-checkbox">

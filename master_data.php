@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(0);
 
 if( !isset($_SESSION["username"]) ) {
     header("Location: login.php");
@@ -8,6 +9,7 @@ if( !isset($_SESSION["username"]) ) {
     include "master_data_proses.php";
     include "transaksi_proses.php";
     include "koneksi.php";
+    
 
     //proses input data ke transaksi
     if( isset($_POST["bayar"])){
@@ -140,18 +142,27 @@ if( !isset($_SESSION["username"]) ) {
                             	</div>
                         	</div>
                     	</div>
+                       
                         <!-- block -->
                          <?php
                             if(mysqli_num_rows($proses) == 0){ 
                                 echo '<div class="alert alert-error alert-block">
                                         <a class="close" data-dismiss="alert" href="#">&times;</a>
-                                        <h4 class="alert-heading">Data Ini Tidak Ada!</h4>
+                                        <h4 class="alert-heading">Data tidak ada!</h4>
                                     </div>';
                                 }else{
                          ?>
+
+                         
+
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Striped Table</div>
+                                <div class="muted pull-left">Data Sepatu</div>
+                                <div class="pull-right">
+                                    <form action="" method="GET">
+                                        <input type="text" style="width: 100px" name="cari" id="" placeholder="Cari data...." autocomplete="off" autofocus>
+                                    </form>
+                                </div>   
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
@@ -173,6 +184,11 @@ if( !isset($_SESSION["username"]) ) {
 						                <?php
                                             $subtotal = 0;
 
+                                            //pencarian
+                                            if( isset($_GET['cari']) ){
+                                                    $proses = mysqli_query($koneksi, "SELECT * FROM sepatu WHERE nama_sepatu 
+                                                    LIKE '%".$_GET['cari']."%' ");
+                                            }
                                             //menampilkan data
                                             while($data = mysqli_fetch_assoc($proses)){
 
@@ -221,8 +237,8 @@ if( !isset($_SESSION["username"]) ) {
                                             }
                                             ?>
                                             <?php 
-  }
-  ?>
+                                            }
+                                            ?>
 						              </tbody>
 						            </table>
                                 </div>

@@ -3,6 +3,6 @@
 include "koneksi.php";
 
     //mengambil data dari db
-    $proses = mysqli_query($koneksi, "SELECT * FROM sepatu") or die (mysqli_error($koneksi));
+    $proses = mysqli_query($koneksi, "SELECT * FROM sepatu ORDER BY id DESC ") or die (mysqli_error($koneksi));
 
 ?>
