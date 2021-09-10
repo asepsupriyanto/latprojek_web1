@@ -144,6 +144,8 @@ if( !isset($_SESSION["username"]) ) {
                     	</div>
                        
                         <!-- block -->
+                        
+                        <!-- jika data kosong -->
                          <?php
                             if(mysqli_num_rows($proses) == 0){ 
                                 echo '<div class="alert alert-error alert-block">
@@ -154,7 +156,7 @@ if( !isset($_SESSION["username"]) ) {
                          ?>
 
                          
-
+                                                
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
                                 <div class="muted pull-left">Data Sepatu</div>
@@ -164,9 +166,10 @@ if( !isset($_SESSION["username"]) ) {
                                     </form>
                                 </div>   
                             </div>
+                            
                             <div class="block-content collapse in">
                                 <div class="span12">
-  									<table class="table table-striped">
+  									<table class="table table-striped table-bordered">
 						              <thead>
                                           <tr>
 						                <th>ID Sepatu</th>
@@ -192,7 +195,7 @@ if( !isset($_SESSION["username"]) ) {
                                             //menampilkan data
                                             while($data = mysqli_fetch_assoc($proses)){
 
-                                                //perhitungan subtotal
+                                            //perhitungan subtotal
                                                 $subtotal = $data['harga']*$data['jumlah'];
                                                 $rupiah = number_format($subtotal,2,',','.');
                                             ?>
@@ -208,6 +211,8 @@ if( !isset($_SESSION["username"]) ) {
                                                     <!-- <a href="#">
                                                         <button class="btn btn-success">Edit</button>
                                                     </a> -->
+
+                                                    <!-- ketika tombol bayar di klik -->
                                                     <form action="" method="POST">
                                                         <button class="btn btn-primary" type="submit" name="bayar">Bayar</button>
                                                             <input type="hidden" class="input-xlarge focused" id="nama_barang" value="<?php if($data['nama_sepatu'] != "") 
@@ -239,13 +244,30 @@ if( !isset($_SESSION["username"]) ) {
                                             <?php 
                                             }
                                             ?>
+                                            
 						              </tbody>
 						            </table>
                                 </div>
+                                       <div class="pagination pagination-small pull-right">
+											<ul>
+												<li class="disabled"><a href="#">Prev</a></li>
+												<li class="active">
+													<a href="#">1</a>
+												</li>
+												<li><a href="#">2</a></li>
+												<li><a href="#">3</a></li>
+												<li><a href="#">4</a></li>
+												<li><a href="#">Next</a></li>
+											</ul>
+                                    
+										</div>
+                                     
                             </div>
+                            
                         </div>
                         <!-- /block -->
                     </div>
+                    
                 </div>
             </div>
                         <hr>

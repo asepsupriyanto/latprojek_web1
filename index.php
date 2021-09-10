@@ -213,7 +213,7 @@ if( !isset($_SESSION["username"]) ) {
             </div>
             <hr>
             <footer>
-                <p>&copy; Asep Supriyanto 2021</p>
+                <p>&copy; Asep Supriyanto 2019 - <?php echo date("Y") ?></p>
             </footer>
         </div>
         <!--/.fluid-container-->
